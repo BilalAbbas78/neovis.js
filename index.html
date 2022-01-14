@@ -25,21 +25,18 @@
             server_user: "neo4j",
             server_password: "12345",
             labels: {
-                "identity": 3,
-                "labels": [
-                    "Person"
-                ],
-                "properties": {
+                    "Person": {
+                        "caption": "name",
+                    }
+                },
 
+            relationships: {
+                "IS_FRIENDS_WITH": {
+                    "caption": true,
                 }
             },
-            // relationships: {
-            //     "n": {
-            //         caption: false,
-            //         thickness: "count"
-            //     }
-            // },
-            initial_cypher: "MATCH (p:Person) RETURN p"
+
+            initial_cypher: "match (p:Person {name : 'Mark'}) match (q:Person {name : 'jennifer'}) MERGE (p)-[r:IS_FRIENDS_WITH]->(q) return p, q, r"
 
         }
 
