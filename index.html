@@ -19,16 +19,25 @@
 </head>
 <script>
     function draw() {
+
+    }
+
+    function myFunction(){
+        // alert("I am an alert box!");
+
+
         var config = {
             container_id: "viz",
             server_url: "bolt://localhost:7687",
             server_user: "neo4j",
             server_password: "12345",
+            "identity": name,
+
             labels: {
-                    "Person": {
-                        "caption": "name",
-                    }
-                },
+                "Person": {
+                    "caption": "name",
+                }
+            },
 
             relationships: {
                 "IS_FRIENDS_WITH": {
@@ -40,11 +49,64 @@
 
         }
 
+
         var viz = new NeoVis.default(config);
         viz.render();
+
+        // console.log(viz.dataset(viz.nodes))
+
+        viz.registerOnEvent("completed", (e)=>{
+            viz["_network"].on("selectNode", (event)=>{
+                // console.log(viz.action.name)
+            // ...put here what happen when click on a node or edge...
+                console.log("Node clicked")
+                // console.log(event.nodeValue)
+                // console.log(event._nodes);
+                // console.log(viz.nodes)
+
+                // console.log()
+
+
+                nodes = viz.nodes;
+                nodesDataset = viz.nodes;
+                edgesDataset = viz.edges;
+                // wait until render completes
+                allNodes = nodesDataset.get({
+                    returnType: "Object"
+                });
+                // network = viz.network
+                // network.on("selectNode", neighbourhoodHighlight);
+
+                // console.log(allNodes[event.nodes[0]].label)
+
+                console.log(allNodes)
+
+
+
+
+
+
+
+            });
+        });
+
+        // selectEdge
+
+
+
+
+
+
     }
+
+
+
+
+
+
 </script>
-<body onload="draw()">
+<body onload="myFunction()">
+<button onclick="myFunction()">Click me</button>
 <div id="viz"></div>
 </body>
 </html>
