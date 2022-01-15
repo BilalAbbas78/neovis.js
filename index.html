@@ -1,85 +1,82 @@
 <!doctype html>
 <html>
 <head>
-    <title>Neovis.js Simple Example</title>
-    <style type="text/css">
-        html, body {
-            font: 16pt arial;
-        }
+	<title>Neovis.js Simple Example</title>
+	<style type="text/css">
+		html, body {
+			font: 16pt arial;
+		}
 
-        #viz {
-            width: 900px;
-            height: 700px;
-            border: 1px solid lightgray;
-            font: 22pt arial;
-        }
-    </style>
-    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+		#viz {
+			width: 900px;
+			height: 700px;
+			border: 1px solid lightgray;
+			font: 22pt arial;
+		}
+	</style>
+	<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
 
 </head>
 <script>
-    function draw() {
 
-    }
-
-    function myFunction(){
-        // alert("I am an alert box!");
+	function draw(){
+		// alert("I am an alert box!");
 
 
-        var config = {
-            container_id: "viz",
-            server_url: "bolt://localhost:7687",
-            server_user: "neo4j",
-            server_password: "12345",
-            "identity": name,
+		var config = {
+			container_id: "viz",
+			server_url: "bolt://localhost:7687",
+			server_user: "neo4j",
+			server_password: "12345",
+			"identity": name,
 
-            labels: {
-                "Person": {
-                    "caption": "name",
-                }
-            },
+			labels: {
+				"Person": {
+					"caption": "name",
+				}
+			},
 
-            relationships: {
-                "IS_FRIENDS_WITH": {
-                    "caption": true,
-                }
-            },
+			relationships: {
+				"IS_FRIENDS_WITH": {
+					"caption": true,
+				}
+			},
 
-            initial_cypher: "match (p:Person {name : 'Mark'}) match (q:Person {name : 'jennifer'}) MERGE (p)-[r:IS_FRIENDS_WITH]->(q) return p, q, r"
+			initial_cypher: "match (p:Person {name : 'Mark'}) match (q:Person {name : 'jennifer'}) MERGE (p)-[r:IS_FRIENDS_WITH]->(q) return p, q, r"
 
-        }
-
-
-        var viz = new NeoVis.default(config);
-        viz.render();
-
-        // console.log(viz.dataset(viz.nodes))
-
-        viz.registerOnEvent("completed", (e)=>{
-            viz["_network"].on("selectNode", (event)=>{
-                // console.log(viz.action.name)
-            // ...put here what happen when click on a node or edge...
-                console.log("Node clicked")
-                // console.log(event.nodeValue)
-                // console.log(event._nodes);
-                // console.log(viz.nodes)
-
-                // console.log()
+		}
 
 
-                nodes = viz.nodes;
-                nodesDataset = viz.nodes;
-                edgesDataset = viz.edges;
-                // wait until render completes
-                allNodes = nodesDataset.get({
-                    returnType: "Object"
-                });
-                // network = viz.network
-                // network.on("selectNode", neighbourhoodHighlight);
+		var viz = new NeoVis.default(config);
+		viz.render();
 
-                // console.log(allNodes[event.nodes[0]].label)
+		// console.log(viz.dataset(viz.nodes))
 
-                console.log(allNodes)
+		viz.registerOnEvent("completed", (e)=>{
+			viz["_network"].on("selectNode", (event)=>{
+				// console.log(viz.action.name)
+				// ...put here what happen when click on a node or edge...
+				console.log("Node clicked")
+				// console.log(event.nodeValue)
+				// console.log(event._nodes);
+				// console.log(viz.nodes)
+
+				// console.log()
+
+
+				nodes = viz.nodes;
+				nodesDataset = viz.nodes;
+				edgesDataset = viz.edges;
+				// wait until render completes
+				allNodes = nodesDataset.get({
+					returnType: "Object"
+				});
+				// network = viz.network
+				// network.on("selectNode", neighbourhoodHighlight);
+
+				// console.log(allNodes[event.nodes[0]].label)
+
+				console.log(allNodes)
 
 
 
@@ -87,17 +84,17 @@
 
 
 
-            });
-        });
+			});
+		});
 
-        // selectEdge
-
-
+		// selectEdge
 
 
 
 
-    }
+
+
+	}
 
 
 
@@ -105,8 +102,8 @@
 
 
 </script>
-<body onload="myFunction()">
-<button onclick="myFunction()">Click me</button>
+<body onload="draw()">
+<button onclick="draw()">Click me</button>
 <div id="viz"></div>
 </body>
 </html>
