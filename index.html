@@ -19,6 +19,12 @@
 </head>
 <script>
 
+	// var allNodes;
+	// var highlightActive = false;
+	//
+	// var nodesDataset = new viz.nodes.getDataSet();
+	// var edgesDataset = new viz.edges.getDataSet();
+
 	function draw(){
 		// alert("I am an alert box!");
 
@@ -50,6 +56,9 @@
 		var viz = new NeoVis.default(config);
 		viz.render();
 
+
+
+
 		// console.log(viz.dataset(viz.nodes))
 
 		viz.registerOnEvent("completed", (e)=>{
@@ -62,21 +71,27 @@
 				// console.log(viz.nodes)
 
 				// console.log()
-
-
-				nodes = viz.nodes;
-				nodesDataset = viz.nodes;
-				edgesDataset = viz.edges;
+				// nodes = viz.nodes;
+				// nodesDataset = viz.nodes;
+				// edgesDataset = viz.edges;
 				// wait until render completes
-				allNodes = nodesDataset.get({
+
+
+				allNodes = viz.nodes.get({
 					returnType: "Object"
 				});
+
+				allEdges = viz.edges.get({
+					returnType: "Object"
+				});
+
 				// network = viz.network
 				// network.on("selectNode", neighbourhoodHighlight);
 
-				// console.log(allNodes[event.nodes[0]].label)
+				console.log(allNodes[event.nodes[0]].label)
 
-				console.log(allNodes)
+				// console.log(allEdges)
+
 
 
 
