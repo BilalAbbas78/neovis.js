@@ -19,6 +19,14 @@
 </head>
 <script>
 
+	var a
+	var array=new Array();
+
+	var array2= new Array();
+
+	var nameArray = new Array();
+
+
 	// var allNodes;
 	// var highlightActive = false;
 	//
@@ -33,7 +41,8 @@
 			container_id: "viz",
 			server_url: "bolt://localhost:7687",
 			server_user: "neo4j",
-			server_password: "12345",
+			// server_password: "12345",
+			server_password: "121212",
 			"identity": name,
 
 			labels: {
@@ -48,7 +57,8 @@
 				}
 			},
 
-			initial_cypher: "match (p:Person {name : 'Mark'}) match (q:Person {name : 'jennifer'}) MERGE (p)-[r:IS_FRIENDS_WITH]->(q) return p, q, r"
+			// initial_cypher: "match (p:Person {name : 'Mark'}) match (q:Person {name : 'jennifer'}) MERGE (p)-[r:IS_FRIENDS_WITH]->(q) return p, q, r"
+			initial_cypher: "match(p:Person)  return p"
 
 		}
 
@@ -59,10 +69,12 @@
 
 
 
+
 		// console.log(viz.dataset(viz.nodes))
 
 		viz.registerOnEvent("completed", (e)=>{
 			viz["_network"].on("selectNode", (event)=>{
+			// viz["_network"].on("click", (event)=>{
 				// console.log(viz.action.name)
 				// ...put here what happen when click on a node or edge...
 				console.log("Node clicked")
@@ -81,6 +93,10 @@
 					returnType: "Object"
 				});
 
+				array.push(viz.nodes.get({
+					returnType: "Object"
+				}));
+
 				allEdges = viz.edges.get({
 					returnType: "Object"
 				});
@@ -88,7 +104,30 @@
 				// network = viz.network
 				// network.on("selectNode", neighbourhoodHighlight);
 
-				console.log(allNodes[event.nodes[0]].label)
+				// console.log(allNodes[event.nodes[0]].label)
+
+				// console.log(event.nodes[0])
+
+
+
+				// for (let i = 7; i <= 8; i++) {
+				// console.log(allNodes[8].label)
+				// }
+
+				// console.log(event.nodes[8].label)
+
+				a = allNodes
+
+				console.log(event.nodes[0]);
+
+				// array.push(event.nodes[0]);
+
+
+
+
+
+
+
 
 				// console.log(allEdges)
 
@@ -100,12 +139,107 @@
 
 
 			});
+
 		});
+
+
+
+
+
+
+
+
+		// viz.registerOnEvent("completed", (e)=>{
+		// 	viz["_network"].on("selectEdge", (event)=>{
+		//
+		//
+		// 		allEdges = viz.edges.get({
+		// 			returnType: "Object"
+		// 		});
+		//
+		// 		// network = viz.network
+		// 		// network.on("selectNode", neighbourhoodHighlight);
+		//
+		// 		console.log(allEdges[event.edges[0]].label)
+		//
+		//
+		//
+		//
+		// 	});
+		// });
+
+
 
 		// selectEdge
 
 
 
+
+
+
+	}
+
+
+
+	function on(){
+
+		array2 = array[0];
+
+		// console.log(array2);
+
+		// console.log(array[0])
+
+
+		// console.log(array[0].forEach(array[0].id))
+		var count = 0;
+
+		for (const id in array2) {
+			// if (/*...is an array element property (see below)...*/) {
+			// 	const element = array[id];
+			// 	console.log(id);
+				nameArray.push(array2[id].label);
+			// 	console.log(array2[id].label);
+
+				// count++;
+			// console.log(event.nodes[id].label)
+
+			// console.log(a[nodes[0]].label)
+
+
+
+
+
+
+			// ...use `element`...
+			// }
+		}
+
+		console.log(nameArray);
+		// console.log(count);
+
+		// array.push(a[])
+
+		// console.log(a.length);
+
+		// for (let index = 0; index < a.length; ++index) {
+		// 	// const element = theArray[index];
+		// 		console.log(a);
+		//
+		// 	// ...use `element`...
+		// }
+
+		// a.forEach(console.log(a));
+
+
+		// for (let i = 6; i < 8; i++) {
+		// 	console.log(a[i].label);
+		//
+		//
+		//
+		// }
+
+
+		// console.log(a[6].label);
 
 
 
@@ -119,6 +253,7 @@
 </script>
 <body onload="draw()">
 <button onclick="draw()">Click me</button>
+<button onclick="on()">Click 2</button>
 <div id="viz"></div>
 </body>
 </html>
