@@ -26,12 +26,67 @@
 
 	var nameArray = new Array();
 
+	var isChecked = false;
+
+	var viz;
 
 	// var allNodes;
 	// var highlightActive = false;
 	//
 	// var nodesDataset = new viz.nodes.getDataSet();
 	// var edgesDataset = new viz.edges.getDataSet();
+
+
+	function hello(){
+		// console.log("ABC");
+
+		// viz._completed(e);
+		// viz.
+
+
+		// var element = document. getElementById("elem");
+
+
+		// var element.onclick = viz._completed(event) {
+		// console. log(event);
+		// }
+
+		// viz._network();
+
+		// viz.
+
+
+
+
+
+		// Add an event listener
+		document.addEventListener("completed", function(e) {
+			// console.log(e.detail); // Prints "Example of an event"
+
+			// viz.registerOnEvent("completed", (e)=>{
+			//
+			//
+			// 	viz["_network"].on("click", (event)=>{
+
+				array.push(viz.nodes.get({
+					returnType: "Object"
+				}));
+
+			// });
+
+		// });
+
+
+		});
+
+		// Create the event
+		var event = new CustomEvent("completed", { "detail": "Example of an event" });
+
+		// Dispatch/Trigger/Fire the event
+		document.dispatchEvent(event);
+
+	}
+
 
 	function draw(){
 		// alert("I am an alert box!");
@@ -63,8 +118,23 @@
 		}
 
 
-		var viz = new NeoVis.default(config);
+		viz = new NeoVis.default(config);
 		viz.render();
+
+
+		// viz.registerOnEvent("completed", (e)=>{
+		// 	viz["_network"].on("click", (event)=>{
+		//
+		// 		array.push(viz.nodes.get({
+		// 			returnType: "Object"
+		// 		}));
+		//
+		// 	});
+		// });
+
+
+
+
 
 
 
@@ -73,8 +143,8 @@
 		// console.log(viz.dataset(viz.nodes))
 
 		viz.registerOnEvent("completed", (e)=>{
-			viz["_network"].on("selectNode", (event)=>{
-			// viz["_network"].on("click", (event)=>{
+			// viz["_network"].on("selectNode", (event)=>{
+			viz["_network"].on("click", (event)=>{
 				// console.log(viz.action.name)
 				// ...put here what happen when click on a node or edge...
 				console.log("Node clicked")
@@ -118,7 +188,7 @@
 
 				a = allNodes
 
-				console.log(event.nodes[0]);
+				// console.log(event.nodes[0]);
 
 				// array.push(event.nodes[0]);
 
@@ -130,6 +200,8 @@
 
 
 				// console.log(allEdges)
+
+
 
 
 
@@ -173,11 +245,57 @@
 		// selectEdge
 
 
+		// document.getElementById("abc").click();
+
+		// hello.onclick();
+
+
+		// hello.prototype.onclick();
+
+		// window.hello();
+
+		// window.onclick = hello();
+
+		// onmousedown(hello());
+
+
+		// on.onclick();
+
+		// hello.onclick();
+
+
+		//
+		// document.addEventListener("hello", function(e) {
+		// 	console.log(e.detail); // Prints "Example of an event"
+		//
+		// 	// viz.registerOnEvent("completed", (e)=>{
+		// 	//
+		// 	//
+		// 	// 	viz["_network"].on("click", (event)=>{
+		//
+		// // Create the event
+		// var event = new CustomEvent("hello", { "detail": "Example of an event" });
+		//
+		// // Dispatch/Trigger/Fire the event
+		// document.dispatchEvent(event);
 
 
 
+
+
+	// });
 
 	}
+
+	window.addEventListener('mousemove', e => {
+		// console.log("Yes");
+		// hello.onclick();
+
+		document.getElementById("abc").click();
+		document.getElementById("def").click();
+
+
+	});
 
 
 
@@ -189,29 +307,37 @@
 
 		// console.log(array[0])
 
+		// if(Array.isArray(array2) && array2.length)
+		// 	console.log("true")
+
 
 		// console.log(array[0].forEach(array[0].id))
 		var count = 0;
 
-		for (const id in array2) {
-			// if (/*...is an array element property (see below)...*/) {
-			// 	const element = array[id];
-			// 	console.log(id);
+		// console.log(array2.size());
+
+
+
+		if (!isChecked) {
+
+
+			for (const id in array2) {
+				// if (/*...is an array element property (see below)...*/) {
+				// 	const element = array[id];
+				// 	console.log(id);
 				nameArray.push(array2[id].label);
-			// 	console.log(array2[id].label);
+				isChecked = true;
+				// 	console.log(array2[id].label);
 
 				// count++;
-			// console.log(event.nodes[id].label)
+				// console.log(event.nodes[id].label)
 
-			// console.log(a[nodes[0]].label)
-
-
+				// console.log(a[nodes[0]].label)
 
 
-
-
-			// ...use `element`...
-			// }
+				// ...use `element`...
+				// }
+			}
 		}
 
 		console.log(nameArray);
@@ -250,10 +376,13 @@
 
 
 
+
+
 </script>
 <body onload="draw()">
 <button onclick="draw()">Click me</button>
-<button onclick="on()">Click 2</button>
+<button id = "def" onclick="on()">Click 2</button>
+<button id = "abc" onclick="hello()">Click 3</button>
 <div id="viz"></div>
 </body>
 </html>
